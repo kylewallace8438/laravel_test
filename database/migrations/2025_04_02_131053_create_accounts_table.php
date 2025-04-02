@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->integer('registerID')->primary();
-            $table->string('login')->max('20')->notNull();
+            $table->unsignedInteger('registerID')->primary()->autoIncrement();
+            $table->string('login')->max('20')->notNull()->unique();
             $table->string('password')->max('40')->notNull();
-            $table->string('phone')->max('20');
+            $table->string('phone')->max('20')->nullable();
         });
     }
 
