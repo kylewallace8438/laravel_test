@@ -2,19 +2,26 @@
 namespace App\Services\BikeServices;
 
 use App\Models\Bike;
+use App\Services\OCRService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class BikeManagementService
 {
-    public function __construct()
+    public function __construct(
+        private OCRService $ocrService
+    )
     {
 
     }
 
-    public function createBike(array $data)
+    public function createBike(Request $request)
     {
         try {
-            return Bike::create($data);
+            $file = $request->file('image');
+            // $ocrResult = $this->ocrService->processImage($file);
+            // dd($ocrResult);
+            return Bike::create($request->all());
         } catch (\Exception $e) {
             // Handle exceptions and return appropriate error response
             throw $e;

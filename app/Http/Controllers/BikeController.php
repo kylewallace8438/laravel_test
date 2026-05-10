@@ -31,7 +31,7 @@ class BikeController extends Controller
     {
         $authUser = $request->user();
         $request->merge(['user_id' => $authUser->id]);
-        return $this->bikeManagementService->createBike($request->all());
+        return $this->bikeManagementService->createBike($request);
     }
 
     public function show(int $id)
