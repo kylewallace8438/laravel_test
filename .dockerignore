@@ -9,3 +9,4 @@ README.md
 .env
 .nyc_output
 coverage
+public/storage

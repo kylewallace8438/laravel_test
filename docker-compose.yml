@@ -10,7 +10,6 @@ services:
       - ./:/var/www
     networks:
       - laravel
-      - mysql_net
 
   nginx:
     image: nginx:alpine
@@ -26,6 +25,22 @@ services:
     networks:
       - laravel
 
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - laravel
+
 volumes:
   dbdata:
     driver: local
@@ -33,6 +48,3 @@ volumes:
 networks:
   laravel:
     driver: bridge
-  mysql_net:
-    external: true
-    name: docker_mysql_default

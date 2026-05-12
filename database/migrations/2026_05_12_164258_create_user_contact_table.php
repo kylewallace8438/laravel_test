@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bikes', function (Blueprint $table) {
+        Schema::create('user_contact', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('brand_id');
-            $table->string('plate_number')->unique();
-            $table->string('name');
-            $table->string('engine_number')->nullable();
-            $table->string('chasis_number')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->string('facebook')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bikes');
+        Schema::dropIfExists('user_contact');
     }
 };

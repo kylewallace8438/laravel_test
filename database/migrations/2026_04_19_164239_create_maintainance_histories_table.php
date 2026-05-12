@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('maintainance_histories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('bike_id');
-            $table->double('cost', 11, 2)->default(0);
-            $table->json('details');
-            $table->string('maintainer');
-            $table->double('odometer', 11, 2)->default(0);
-            $table->dateTime('maintainance_date');
+            $table->decimal('total', 15, 2)->default(0);
+            $table->longText('details');
+            $table->unsignedBigInteger('maintainer_id');
+            $table->decimal('odometer', 15, 2)->default(0);
+            $table->unsignedBigInteger('brand_id');
+            $table->string('bike_model');
+            $table->string('plate');
             $table->timestamps();
             // $table->foreign('bike_id')->references('id')->on('bikes')->onDelete('cascade');
         });
